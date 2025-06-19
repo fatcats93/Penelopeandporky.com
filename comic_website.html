@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penelope & Porky - Comic Series</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+
+        .comics-section {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .comics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comic-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .comic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .comic-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .comic-info {
+            padding: 1.5rem;
+        }
+
+        .comic-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .comic-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .buy-button {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background: #5a67d8;
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .character-preview {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .character-preview h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .cart-count {
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">P&P Comics</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#comics">Comics</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#cart" onclick="showCart()">Cart <span id="cart-count" class="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Penelope & Porky</h1>
+            <p>Adventure awaits in every page!</p>
+            <a href="#comics" class="cta-button">Shop Comics Now</a>
+        </div>
+    </section>
+
+    <section id="comics" class="comics-section">
+        <div class="container">
+            <h2 class="section-title">Our Comic Collection</h2>
+            <div class="comics-grid">
+                <div class="comic-card">
+                    <div class="comic-image">📚 #1</div>
+                    <div class="comic-info">
+                        <h3 class="comic-title">Penelope & Porky: The Beginning</h3>
+                        <p>Join our heroes as they embark on their first incredible adventure!</p>
+                        <div class="comic-price">$12.99</div>
+                        <button class="buy-button" onclick="addToCart('Issue #1', 12.99)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="comic-card">
+                    <div class="comic-image">📚 #2</div>
+                    <div class="comic-info">
+                        <h3 class="comic-title">Penelope & Porky: Mystery Mountain</h3>
+                        <p>A thrilling mystery unfolds in the mountains. Can they solve it?</p>
+                        <div class="comic-price">$12.99</div>
+                        <button class="buy-button" onclick="addToCart('Issue #2', 12.99)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="comic-card">
+                    <div class="comic-image">📚 #3</div>
+                    <div class="comic-info">
+                        <h3 class="comic-title">Penelope & Porky: Ocean Quest</h3>
+                        <p>Dive deep into an underwater adventure like no other!</p>
+                        <div class="comic-price">$12.99</div>
+                        <button class="buy-button" onclick="addToCart('Issue #3', 12.99)">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="comic-card">
+                    <div class="comic-image">📦 SET</div>
+                    <div class="comic-info">
+                        <h3 class="comic-title">Complete Collection Bundle</h3>
+                        <p>Get all three issues at a special bundle price!</p>
+                        <div class="comic-price">$34.99 <small style="text-decoration: line-through; color: #999;">$38.97</small></div>
+                        <button class="buy-button" onclick="addToCart('Complete Bundle', 34.99)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Meet the Characters</h2>
+                    <p>Penelope and Porky are unlikely friends who find themselves in the most extraordinary situations. With Penelope's quick wit and Porky's brave heart, they tackle challenges that would make anyone else run away!</p>
+                    <p>Each comic is filled with humor, heart, and adventure that appeals to readers of all ages. Join them on their journey through mysterious lands, ancient puzzles, and friendship that conquers all!</p>
+                </div>
+                <div class="character-preview">
+                    <h3>🦸‍♀️ Penelope & 🐷 Porky</h3>
+                    <p>The dynamic duo that proves friendship and courage can overcome any obstacle!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Penelope & Porky Comics. All rights reserved.</p>
+            <p>Created with ❤️ for comic lovers everywhere</p>
+        </div>
+    </footer>
+
+    <script>
+        let cart = [];
+        let cartCount = 0;
+
+        function addToCart(itemName, price) {
+            cart.push({name: itemName, price: price});
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+            
+            // Show success message
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = 'Added!';
+            button.style.background = '#4CAF50';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '#667eea';
+            }, 1000);
+        }
+
+        function showCart() {
+            if (cart.length === 0) {
+                alert('Your cart is empty! Add some comics first.');
+                return;
+            }
+            
+            let cartContents = "Your Cart:\n\n";
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                cartContents += `${index + 1}. ${item.name} - $${item.price.toFixed(2)}\n`;
+                total += item.price;
+            });
+            
+            cartContents += `\nTotal: $${total.toFixed(2)}`;
+            cartContents += "\n\nReady to checkout? (This is a demo - no real payment processing)";
+            
+            if (confirm(cartContents)) {
+                alert("Thanks for your order! In a real store, you'd be redirected to payment processing.");
+                cart = [];
+                cartCount = 0;
+                document.getElementById('cart-count').textContent = cartCount;
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
